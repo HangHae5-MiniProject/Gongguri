@@ -11,12 +11,5 @@ import lombok.Setter;
 @Setter
 public class CommentRequestDto {
 
-    private Post Post   ;
     private String comment;
-
-
-    public CommentRequestDto(Post Post, String comment) {
-        this.Post = Post;
-        this.comment=comment;
-    }
 }

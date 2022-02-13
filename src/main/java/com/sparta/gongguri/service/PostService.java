@@ -2,6 +2,7 @@ package com.sparta.gongguri.service;
 
 import com.sparta.gongguri.dto.PostRequestDto;
 import com.sparta.gongguri.dto.PostResponseDto;
+import com.sparta.gongguri.dto.ResultDto;
 import com.sparta.gongguri.model.Post;
 import com.sparta.gongguri.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,11 +29,30 @@ public class PostService {
 
 //   전체 게시글 조회 -
     public List<PostResponseDto> getPosts() {
-        List<Post> posts = postRepository.findAll() ;
+        List<Post> posts = postRepository.findAll();
+        List<PostResponseDto> allPosts = new ArrayList<>();
+//            allPosts.add(result= true);
 
-        return PostResponseDto.listOf(posts);
+            for (Post post : posts) {
+                allPosts.add(new PostResponseDto(
+                        post.getPostId(),
+                        post.getTitle(),
+                        post.getContent(),
+                        post.getImageUrl(),
+                        post.getStartAt(),
+                        post.getEndAt(),
+                        post.getPrice(),
+                        post.getMinimum(),
+                        post.getBuyercount()
+                ));
+            }
+
+//        String result = "true";
+//        ResultDto resultDto = new ResultDto(result,allPosts);
+//            return (List<PostResponseDto>) resultDto;
+
+            return allPosts;
     }
-
 
 //  게시글 상세 페이지 조회
     public PostResponseDto getPost(Long postId) {
@@ -40,34 +60,30 @@ public class PostService {
         Post post =postRepository.findById(postId).orElseThrow(
                 ()->new IllegalArgumentException( " 게시글이 없습니다 ")
         );
-
-
-        boolean result = true;
+//        boolean result = true;
         String title = post.getTitle();
         String content =post.getContent();
         String imageurl = post.getImageUrl();
         String startAt = post.getStartAt();
         String endAt = post.getEndAt();
         int price = post.getPrice();
-        int mininum = post.getMinimum();
+        int minimum = post.getMinimum();
         int buyercount =post.getBuyercount();
-
-
-
-
-
-
-
-        return new PostResponseDto(postId,title,content,imageurl,startAt,endAt,price,mininum,buyercount);
+        return new PostResponseDto(postId,title,content,imageurl,startAt,endAt,price,minimum,buyercount);
     }
 
     //게시글 상세페이지 수정
-    public void updatePost(Long postId, String title, String content) {
+    @Transactional
+    public void updatePost(Long postId, PostRequestDto postRequestDto) {
         Post post = postRepository.findById(postId).orElseThrow(
                 ()-> new IllegalArgumentException("게시글이 존재하지 않습니다.")
         );
-        post.update(title,content);
+        System.out.println(postRequestDto.getContent());
+        System.out.println(postRequestDto.getTitle());
+        post.update(postRequestDto);
+
     }
+
 
 
 

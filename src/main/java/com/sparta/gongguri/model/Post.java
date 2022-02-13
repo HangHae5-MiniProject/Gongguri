@@ -45,27 +45,9 @@ public class Post {
 
     @Column
     private int buyercount;
-
+//
 //    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
 //    private List<Comment> commentList = new ArrayList<>();
-
-
-
-//    @ManyToOne
-//    @JoinColumn(name = u_id,nullable = false)
-//    private User user;
-
-
-
-//    public Post(String title ,String content,String imageUrl,String startAt,String endAt,int minimum,int price,int sponsor ) {
-//        this.content =content;
-//        this.imageUrl=imageUrl;
-//        this.title=title;
-//        this.startAt=startAt;
-//        this.endAt=endAt;
-//        this.price=price;
-//        this.minimum=minimum;
-//    }
 
     public Post(PostRequestDto postRequestDto) {
         this.content =postRequestDto.getContent();
@@ -77,10 +59,10 @@ public class Post {
         this.minimum=postRequestDto.getMinimum();
     }
 
-
-    public void update(String title, String content) {
-        this.title =title;
-        this.content = content;
-
+    public void update(PostRequestDto postRequestDto) {
+        this.title =postRequestDto.getTitle();
+        this.content = postRequestDto.getContent();
     }
+
+
 }
