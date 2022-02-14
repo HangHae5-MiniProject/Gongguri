@@ -31,4 +31,16 @@ public class CommentController {
         return commentService.getComments(postId);
     }
 
+//    @PostMapping("/api/comments")
+//    public void createComment(@RequestBody CommentRequestDto commentRequestDto){
+//        commentService.createComment(commentRequestDto);
+//    }
+//
+//    @GetMapping("/api/reply/{postId}")
+//    public List<Comment> getComment(@PathVariable Long postId){
+//        return CommentService.getComment(postId);
+//    }
+
+
+
 }

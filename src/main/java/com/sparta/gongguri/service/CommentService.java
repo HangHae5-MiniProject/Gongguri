@@ -9,7 +9,6 @@ import com.sparta.gongguri.repository.CommentRepository;
 import com.sparta.gongguri.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,9 +46,18 @@ public class CommentService {
             CommentResponseDto commentResponseDto = new CommentResponseDto(commentId,comment);
             comments.add(commentResponseDto);
         }
-
             return comments;
-
     }
+
+
+//    public Comment createComment(CommentRequestDto commentRequestDto) {
+//        Comment comment = new Comment(commentRequestDto);
+//        commentRepository.save(comment);
+//        return comment;
+//    }
+//
+//    public List<Comment> getComment(Long postId)   {
+//        return CommentRepository.findAllByPostid(postId);
+//    }
 
 }

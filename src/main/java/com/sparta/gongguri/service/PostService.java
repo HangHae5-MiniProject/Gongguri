@@ -35,7 +35,7 @@ public class PostService {
 
             for (Post post : posts) {
                 allPosts.add(new PostResponseDto(
-                        post.getPostId(),
+                        post.getId(),
                         post.getTitle(),
                         post.getContent(),
                         post.getImageUrl(),

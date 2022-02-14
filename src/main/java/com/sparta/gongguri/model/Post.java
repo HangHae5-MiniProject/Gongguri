@@ -20,7 +20,7 @@ public class Post {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Long postId;
+    private Long Id;
 
     @Column(nullable = false)
     private String title;
@@ -45,9 +45,9 @@ public class Post {
 
     @Column
     private int buyercount;
-//
-//    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-//    private List<Comment> commentList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Comment> commentList = new ArrayList<>();
 
     public Post(PostRequestDto postRequestDto) {
         this.content =postRequestDto.getContent();
